@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>GOLTI-SAMA</title>
+  <style>
+    body {
+      background: #fff;
+      color: #000;
+      font-family: system-ui, Arial, sans-serif;
+      text-align: center;
+      padding: 30px;
+    }
+    h1 {
+      font-size: 24px;
+      margin-bottom: 10px;
+    }
+    #fileList {
+      margin-top: 30px;
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+      text-align: left;
+    }
+    .file-item {
+      padding: 8px 0;
+      border-bottom: 1px solid #eee;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    a {
+      color: #000;
+      text-decoration: underline;
+      word-break: break-all;
+    }
+    .size {
+      font-size: 12px;
+      color: #555;
+      margin-left: 10px;
+    }
+  </style>
+</head>
+<body>
+  
+
+  <div id="fileList">-----</div>
+
+  <!-- Supabase JS SDK -->
+  <script src="https://unpkg.com/@supabase/supabase-js@2"></script>
+  <script>
+    // 🔧 Your Supabase credentials
+    const SUPABASE_URL = "https://nikdwrutgimokkqjkhee.supabase.co";
+    const SUPABASE_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im5pa2R3cnV0Z2ltb2trcWpraGVlIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjA1NTg2MDYsImV4cCI6MjA3NjEzNDYwNn0.g1I6Q0PZb_s_b3nTUplgb_wq0VVGjXbnhdGAWy94y0Y";
+    const BUCKET_NAME = "golti-files";
+
+    const client = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+    const fileListDiv = document.getElementById("fileList");
+
+    // 🧾 Load file list
+    async function loadFiles() {
+      const { data, error } = await client.storage
+        .from(BUCKET_NAME)
+        .list("", { limit: 100, sortBy: { column: "name", order: "desc" } });
+
+      if (error) {
+        console.error("Error loading files:", error.message);
+        fileListDiv.innerHTML = "<p style='color:red;'>Error loading files.</p>";
+        return;
+      }
+
+      if (!data || data.length === 0) {
+        fileListDiv.innerHTML = "<p>No files available.</p>";
+        return;
+      }
+
+      fileListDiv.innerHTML = data
+        .map((file) => {
+          const { data: publicURL } = client.storage
+            .from(BUCKET_NAME)
+            .getPublicUrl(file.name);
+
+          const size = (file.metadata?.size / 1024 || 0).toFixed(1);
+          return `
+            <div class="file-item">
+              <a href="${publicURL.publicUrl}" target="_blank" download>${file.name}</a>
+              <span class="size">${size} KB</span>
+            </div>
+          `;
+        })
+        .join("");
+    }
+
+    loadFiles();
+  </script>
+</body>
+</html>
