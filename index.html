@@ -1,539 +1,549 @@
-<!DOCTYPE html>
-<html>
+    <!DOCTYPE html>
+    <html>
 
-<head>
-<title>Network error</title>
+    <head>
+    <title>Network error</title>
 
-<style>
-span{
-cursor:pointer;
-margin:8px;
-font-size:22px;
-user-select:none;
-}
-</style>
-
-</head>
-
-<body>
-
-<span onclick="copyText(1)">1</span>
-<span onclick="copyText(2)">2</span>
-<span onclick="copyText(3)">3</span>
-<span onclick="copyText(4)">4</span>
-<span onclick="copyText(5)">5</span>
-<span onclick="copyText(6)">6</span>
-
-<script>
-
-let texts = {
-
-1:`import java.util.Scanner;
-
-public class SimpleStack {
-
-    int[] stack = new int[5];
-    int top = -1;
-
-    public void push(int element) {
-        if (top == stack.length - 1) {
-            System.out.println("Stack is full.");
-            return;
-        }
-        top++;
-        stack[top] = element;
+    <style>
+    span{
+    cursor:pointer;
+    margin:8px;
+    font-size:22px;
+    user-select:none;
     }
+    </style>
 
-    public int pop() {
-        if (top == -1) {
-            System.out.println("Stack is empty.");
-            return -1;
-        }
-        int element = stack[top];
-        top--;
-        return element;
-    }
+    </head>
 
-    public void displayStack() {
-        if (top == -1) {
-            System.out.println("Stack is empty.");
-            return;
+    <body>
+
+    <span onclick="copyText(1)">1</span>
+    
+    <script>
+
+    let texts = {
+
+    1:`import java.util.Scanner;
+
+    public class SimpleStack {
+
+        int[] stack = new int[5];
+        int top = -1;
+
+        public void push(int element) {
+            if (top == stack.length - 1) {
+                System.out.println("Stack is full.");
+                return;
+            }
+            top++;
+            stack[top] = element;
         }
 
-        System.out.println("Stack elements:");
-        for (int i = top; i >= 0; i--) {
-            System.out.println(stack[i]);
+        public int pop() {
+            if (top == -1) {
+                System.out.println("Stack is empty.");
+                return -1;
+            }
+            int element = stack[top];
+            top--;
+            return element;
         }
-    }
 
-    public void displayMenu() {
-        System.out.println("Simple Stack Program");
-        System.out.println("1. Push element");
-        System.out.println("2. Pop element");
-        System.out.println("3. Display stack elements");
-        System.out.println("4. Exit");
-    }
-
-    public static void main(String[] args) {
-
-        SimpleStack stack = new SimpleStack();
-        Scanner scanner = new Scanner(System.in);
-
-        int choice, element;
-
-        stack.displayMenu();
-
-        do {
-            System.out.println("Enter your choice:");
-            choice = scanner.nextInt();
-
-            switch (choice) {
-
-                case 1:
-                    System.out.println("Enter element to push:");
-                    element = scanner.nextInt();
-                    stack.push(element);
-                    break;
-
-                case 2:
-                    element = stack.pop();
-                    if (element != -1)
-                        System.out.println("Popped element: " + element);
-                    break;
-
-                case 3:
-                    stack.displayStack();
-                    break;
-
-                case 4:
-                    System.out.println("Exiting program.");
-                    break;
-
-                default:
-                    System.out.println("Invalid choice. Please choose again.");
+        public void displayStack() {
+            if (top == -1) {
+                System.out.println("Stack is empty.");
+                return;
             }
 
-        } while (choice != 4);
+            System.out.println("Stack elements:");
+            for (int i = top; i >= 0; i--) {
+                System.out.println(stack[i]);
+            }
+        }
+
+        public void displayMenu() {
+            System.out.println("Simple Stack Program");
+            System.out.println("1. Push element");
+            System.out.println("2. Pop element");
+            System.out.println("3. Display stack elements");
+            System.out.println("4. Exit");
+        }
+
+        public static void main(String[] args) {
+
+            SimpleStack stack = new SimpleStack();
+            Scanner scanner = new Scanner(System.in);
+
+            int choice, element;
+
+            stack.displayMenu();
+
+            do {
+                System.out.println("Enter your choice:");
+                choice = scanner.nextInt();
+
+                switch (choice) {
+
+                    case 1:
+                        System.out.println("Enter element to push:");
+                        element = scanner.nextInt();
+                        stack.push(element);
+                        break;
+
+                    case 2:
+                        element = stack.pop();
+                        if (element != -1)
+                            System.out.println("Popped element: " + element);
+                        break;
+
+                    case 3:
+                        stack.displayStack();
+                        break;
+
+                    case 4:
+                        System.out.println("Exiting program.");
+                        break;
+
+                    default:
+                        System.out.println("Invalid choice. Please choose again.");
+                }
+
+            } while (choice != 4);
+        }
     }
-}`,
-
-2:`import java.util.Scanner;
     
-public class SimpleQueue
-{
-int[]queue=new int[5];
-int front=0;
-int rear=0;
-int size=0;
-public void enqueue(int element)
-{
-if (size==queue.length)
-{
-System.out.println("queue is full.");
-return;
-}
-queue[rear]=element;
-rear=(rear+1)%queue.length;
-size++;
-}
-public int dequeue()
-{
-if (size==0)
-{
-System.out.println("Queue is empty.");
-return-1;
-}
-int element=queue[front];
-front=(front+1)%queue.length;
-size--;
-return element;
-}
-public void displayqueue()
-{
-if (size==0)
-{
-System.out.println("Queue is empty.");
-return;
-}
-System.out.println("Queue elements:");
-int tempFront=front;
-for (int i=0;i<size;i++)
-{
-System.out.println(queue[tempFront]+"");
-tempFront=(tempFront+1)%queue.length;
-}
-}
-public void displayMenu()
-{
-System.out.println("Simple Queue program");
-System.out.println("1.Enqueue element");
-System.out.println("2.dequeue element");
-System.out.println("3.Display queue elements");
-System.out.println("4.Exit"); 
-}
-public static void main(String[]args)
-{
-SimpleQueue queue = new SimpleQueue();
-Scanner scanner = new Scanner(System.in);
-int choice,element;
-queue.displayMenu();
-do
-{
-System.out.println("Enter your choice:");
-choice= scanner.nextInt();
-switch(choice)
-{
-case 1:
-System.out.println("Enter element to enqueue:");
-element=scanner.nextInt();
-queue.enqueue(element);
-break;
-
-case 2:
-element=queue.dequeue();
-if (element !=-1)
-System.out.println("Dequeued element:"+element);
-break;
-
-case 3:
-    queue.displayqueue();
+    
+    import java.util.Scanner;
+        
+    public class SimpleQueue
+    {
+    int[]queue=new int[5];
+    int front=0;
+    int rear=0;
+    int size=0;
+    public void enqueue(int element)
+    {
+    if (size==queue.length)
+    {
+    System.out.println("queue is full.");
+    return;
+    }
+    queue[rear]=element;
+    rear=(rear+1)%queue.length;
+    size++;
+    }
+    public int dequeue()
+    {
+    if (size==0)
+    {
+    System.out.println("Queue is empty.");
+    return-1;
+    }
+    int element=queue[front];
+    front=(front+1)%queue.length;
+    size--;
+    return element;
+    }
+    public void displayqueue()
+    {
+    if (size==0)
+    {
+    System.out.println("Queue is empty.");
+    return;
+    }
+    System.out.println("Queue elements:");
+    int tempFront=front;
+    for (int i=0;i<size;i++)
+    {
+    System.out.println(queue[tempFront]+"");
+    tempFront=(tempFront+1)%queue.length;
+    }
+    }
+    public void displayMenu()
+    {
+    System.out.println("Simple Queue program");
+    System.out.println("1.Enqueue element");
+    System.out.println("2.dequeue element");
+    System.out.println("3.Display queue elements");
+    System.out.println("4.Exit"); 
+    }
+    public static void main(String[]args)
+    {
+    SimpleQueue queue = new SimpleQueue();
+    Scanner scanner = new Scanner(System.in);
+    int choice,element;
+    queue.displayMenu();
+    do
+    {
+    System.out.println("Enter your choice:");
+    choice= scanner.nextInt();
+    switch(choice)
+    {
+    case 1:
+    System.out.println("Enter element to enqueue:");
+    element=scanner.nextInt();
+    queue.enqueue(element);
     break;
 
-case 4:
-System.out.println("Exiting program.");
-break;
+    case 2:
+    element=queue.dequeue();
+    if (element !=-1)
+    System.out.println("Dequeued element:"+element);
+    break;
 
-default:
-System.out.println("invalid choice.please choose again.");
-}
-}
-while(choice!=4);
-}
-}
-`,
+    case 3:
+        queue.displayqueue();
+        break;
 
-3:`import java.util.Scanner;
+    case 4:
+    System.out.println("Exiting program.");
+    break;
 
-class StackLinkedList {
-    static class Node {
-        int data;
-        Node next;
-
-        Node(int data) {
-            this.data = data;
-            this.next = null;
-        }
+    default:
+    System.out.println("invalid choice.please choose again.");
     }
-
-    Node top = null;
-
-    void push(int value) {
-        Node newNode = new Node(value);
-        newNode.next = top;
-        top = newNode;
-        System.out.println(value + " pushed into stack");
     }
-
-    void pop() {
-        if (top == null) {
-            System.out.println("Stack is empty");
-            return;
-        }
-        System.out.println("Popped element: " + top.data);
-        top = top.next;
+    while(choice!=4);
     }
-
+    }
     
-    void peek() {
-        if (top == null) {
-            System.out.println("Stack is empty");
-        } else {
-            System.out.println("Top element: " + top.data);
+    
+    import java.util.Scanner;
+
+    class StackLinkedList {
+        static class Node {
+            int data;
+            Node next;
+
+            Node(int data) {
+                this.data = data;
+                this.next = null;
+            }
+        }
+
+        Node top = null;
+
+        void push(int value) {
+            Node newNode = new Node(value);
+            newNode.next = top;
+            top = newNode;
+            System.out.println(value + " pushed into stack");
+        }
+
+        void pop() {
+            if (top == null) {
+                System.out.println("Stack is empty");
+                return;
+            }
+            System.out.println("Popped element: " + top.data);
+            top = top.next;
+        }
+
+        
+        void peek() {
+            if (top == null) {
+                System.out.println("Stack is empty");
+            } else {
+                System.out.println("Top element: " + top.data);
+            }
+        }
+
+        void display() {
+            if (top == null) {
+                System.out.println("Stack is empty");
+                return;
+            }
+            Node temp = top;
+            System.out.print("Top → ");
+            while (temp != null) {
+                System.out.print("[" + temp.data + " | next] → ");
+                temp = temp.next;
+            }
+            System.out.println("null");
+        }
+
+        public static void main(String[] args) {
+            StackLinkedList stack = new StackLinkedList();
+            Scanner sc = new Scanner(System.in);
+            int choice;
+
+            System.out.println("\n--- Stack Menu ---");
+            System.out.println("1.Push");
+            System.out.println("2.Pop");
+            System.out.println("3.Peek");
+            System.out.println("4.Display");
+            System.out.println("5.Exit");
+
+            do {
+                System.out.print("Enter choice: ");
+                choice = sc.nextInt();
+
+                switch (choice) {
+                    case 1:
+                        System.out.print("Enter value: ");
+                        int val = sc.nextInt();
+                        stack.push(val);
+                        break;
+
+                    case 2:
+                        stack.pop();
+                        break;
+
+                    case 3:
+                        stack.peek();
+                        break;
+
+                    case 4:
+                        stack.display();
+                        break;
+
+                    case 5:
+                        System.out.println("Program Ended");
+                        break;
+
+                    default:
+                        System.out.println("Invalid choice");
+                }
+
+            } while (choice != 5);
+
+            sc.close();
         }
     }
+        
+    
+    import java.util.Scanner;
 
-    void display() {
-        if (top == null) {
-            System.out.println("Stack is empty");
-            return;
+    class QueueLinkedList {
+
+        static class Node {
+            int data;
+            Node next;
+
+            Node(int data) {
+                this.data = data;
+                this.next = null;
+            }
         }
-        Node temp = top;
-        System.out.print("Top → ");
-        while (temp != null) {
-            System.out.print("[" + temp.data + " | next] → ");
-            temp = temp.next;
-        }
-        System.out.println("null");
-    }
 
-    public static void main(String[] args) {
-        StackLinkedList stack = new StackLinkedList();
-        Scanner sc = new Scanner(System.in);
-        int choice;
+        Node front = null;
+        Node rear = null;
 
-        System.out.println("\n--- Stack Menu ---");
-        System.out.println("1.Push");
-        System.out.println("2.Pop");
-        System.out.println("3.Peek");
-        System.out.println("4.Display");
-        System.out.println("5.Exit");
+        void enqueue(int value) {
+            Node newNode = new Node(value);
 
-        do {
-            System.out.print("Enter choice: ");
-            choice = sc.nextInt();
-
-            switch (choice) {
-                case 1:
-                    System.out.print("Enter value: ");
-                    int val = sc.nextInt();
-                    stack.push(val);
-                    break;
-
-                case 2:
-                    stack.pop();
-                    break;
-
-                case 3:
-                    stack.peek();
-                    break;
-
-                case 4:
-                    stack.display();
-                    break;
-
-                case 5:
-                    System.out.println("Program Ended");
-                    break;
-
-                default:
-                    System.out.println("Invalid choice");
+            if (rear == null) {
+                front = rear = newNode;
+            } else {
+                rear.next = newNode;
+                rear = newNode;
             }
 
-        } while (choice != 5);
+            System.out.println(value + " inserted into queue");
+        }
 
-        sc.close();
+        void dequeue() {
+            if (front == null) {
+                System.out.println("Queue is empty");
+                return;
+            }
+
+            System.out.println("Deleted element: " + front.data);
+            front = front.next;
+
+            if (front == null) {
+                rear = null;
+            }
+        }
+
+        void display() {
+            if (front == null) {
+                System.out.println("Queue is empty");
+                return;
+            }
+
+            Node temp = front;
+
+            System.out.print("Front → ");
+
+            while (temp != null) {
+                System.out.print("[" + temp.data + " | next] → ");
+                temp = temp.next;
+            }
+
+            System.out.println("null");
+        }
+
+        public static void main(String[] args) {
+
+            QueueLinkedList queue = new QueueLinkedList();
+            Scanner sc = new Scanner(System.in);
+            int choice;
+
+            System.out.println("\n--- Queue Menu ---");
+            System.out.println("1.Enqueue");
+            System.out.println("2.Dequeue");
+            System.out.println("3.Display");
+            System.out.println("4.Exit");
+
+            do {
+
+                System.out.print("Enter choice: ");
+                choice = sc.nextInt();
+
+                switch (choice) {
+
+                    case 1:
+                        System.out.print("Enter value: ");
+                        int val = sc.nextInt();
+                        queue.enqueue(val);
+                        break;
+
+                    case 2:
+                        queue.dequeue();
+                        break;
+
+                    case 3:
+                        queue.display();
+                        break;
+
+                    case 4:
+                        System.out.println("Program Ended");
+                        break;
+
+                    default:
+                        System.out.println("Invalid choice");
+                }
+
+            } while (choice != 4);
+
+            sc.close();
+        }
     }
-}`,
+        
+    
+    import java.util.*;
 
-4:`import java.util.Scanner;
+    class InfixToPostfix {
+        static int p(char c) {
+            if (c=='+'||c=='-') return 1;
+            if (c=='*'||c=='/') return 2;
+            return 0;
+        }
 
-class QueueLinkedList {
+        static String convert(String s) {
+            Stack<Character> st = new Stack<>();
+            String post = "";
 
-    static class Node {
+            for (char c : s.toCharArray()) {
+                if (Character.isLetterOrDigit(c))
+                    post += c;
+                else if (c == '(')
+                    st.push(c);
+                else if (c == ')') {
+                    while (st.peek() != '(') post += st.pop();
+                    st.pop();
+                } else {
+                    while (!st.isEmpty() && p(c) <= p(st.peek()))
+                        post += st.pop();
+                    st.push(c); 
+                }
+            }
+            while (!st.isEmpty()) post += st.pop();
+            return post;
+        }
+
+        public static void main(String[] args) {
+            Scanner sc = new Scanner(System.in);
+            System.out.print("Enter Infix Expression: ");
+            String infix = sc.nextLine();
+            System.out.println("Postfix Expression: " + convert(infix));
+        }
+    }
+        
+    
+    class Node {
         int data;
-        Node next;
+        Node left, right;
 
         Node(int data) {
             this.data = data;
-            this.next = null;
+            left = right = null;
         }
     }
 
-    Node front = null;
-    Node rear = null;
+    public class BinaryTreeTraversal {
 
-    void enqueue(int value) {
-        Node newNode = new Node(value);
+        Node root;
 
-        if (rear == null) {
-            front = rear = newNode;
-        } else {
-            rear.next = newNode;
-            rear = newNode;
-        }
-
-        System.out.println(value + " inserted into queue");
-    }
-
-    void dequeue() {
-        if (front == null) {
-            System.out.println("Queue is empty");
-            return;
-        }
-
-        System.out.println("Deleted element: " + front.data);
-        front = front.next;
-
-        if (front == null) {
-            rear = null;
-        }
-    }
-
-    void display() {
-        if (front == null) {
-            System.out.println("Queue is empty");
-            return;
-        }
-
-        Node temp = front;
-
-        System.out.print("Front → ");
-
-        while (temp != null) {
-            System.out.print("[" + temp.data + " | next] → ");
-            temp = temp.next;
-        }
-
-        System.out.println("null");
-    }
-
-    public static void main(String[] args) {
-
-        QueueLinkedList queue = new QueueLinkedList();
-        Scanner sc = new Scanner(System.in);
-        int choice;
-
-        System.out.println("\n--- Queue Menu ---");
-        System.out.println("1.Enqueue");
-        System.out.println("2.Dequeue");
-        System.out.println("3.Display");
-        System.out.println("4.Exit");
-
-        do {
-
-            System.out.print("Enter choice: ");
-            choice = sc.nextInt();
-
-            switch (choice) {
-
-                case 1:
-                    System.out.print("Enter value: ");
-                    int val = sc.nextInt();
-                    queue.enqueue(val);
-                    break;
-
-                case 2:
-                    queue.dequeue();
-                    break;
-
-                case 3:
-                    queue.display();
-                    break;
-
-                case 4:
-                    System.out.println("Program Ended");
-                    break;
-
-                default:
-                    System.out.println("Invalid choice");
-            }
-
-        } while (choice != 4);
-
-        sc.close();
-    }
-}`,
-
-5:`import java.util.*;
-
-class InfixToPostfix {
-    static int p(char c) {
-        if (c=='+'||c=='-') return 1;
-        if (c=='*'||c=='/') return 2;
-        return 0;
-    }
-
-    static String convert(String s) {
-        Stack<Character> st = new Stack<>();
-        String post = "";
-
-        for (char c : s.toCharArray()) {
-            if (Character.isLetterOrDigit(c))
-                post += c;
-            else if (c == '(')
-                st.push(c);
-            else if (c == ')') {
-                while (st.peek() != '(') post += st.pop();
-                st.pop();
-            } else {
-                while (!st.isEmpty() && p(c) <= p(st.peek()))
-                    post += st.pop();
-                st.push(c); 
+        void inorder(Node root) {
+            if (root != null) {
+                inorder(root.left);
+                System.out.print(root.data + " ");
+                inorder(root.right);
             }
         }
-        while (!st.isEmpty()) post += st.pop();
-        return post;
-    }
 
-    public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
-        System.out.print("Enter Infix Expression: ");
-        String infix = sc.nextLine();
-        System.out.println("Postfix Expression: " + convert(infix));
-    }
-}
-
-`,
-
-6:`class Node {
-    int data;
-    Node left, right;
-
-    Node(int data) {
-        this.data = data;
-        left = right = null;
-    }
-}
-
-public class BinaryTreeTraversal {
-
-    Node root;
-
-    void inorder(Node root) {
-        if (root != null) {
-            inorder(root.left);
-            System.out.print(root.data + " ");
-            inorder(root.right);
+        void preorder(Node root) {
+            if (root != null) {
+                System.out.print(root.data + " ");
+                preorder(root.left);
+                preorder(root.right);
+            }
         }
-    }
 
-    void preorder(Node root) {
-        if (root != null) {
-            System.out.print(root.data + " ");
-            preorder(root.left);
-            preorder(root.right);
+        void postorder(Node root) {
+            if (root != null) {
+                postorder(root.left);
+                postorder(root.right);
+                System.out.print(root.data + " ");
+            }
         }
-    }
 
-    void postorder(Node root) {
-        if (root != null) {
-            postorder(root.left);
-            postorder(root.right);
-            System.out.print(root.data + " ");
+        public static void main(String[] args) {
+
+            BinaryTreeTraversal tree = new BinaryTreeTraversal();
+
+            tree.root = new Node(1);
+            tree.root.left = new Node(2);
+            tree.root.right = new Node(3);
+            tree.root.left.left = new Node(4);
+            tree.root.left.right = new Node(5);
+
+            System.out.println("Inorder Traversal:");
+            tree.inorder(tree.root);
+
+            System.out.println("\nPreorder Traversal:");
+            tree.preorder(tree.root);
+
+            System.out.println("\nPostorder Traversal:");
+            tree.postorder(tree.root);
         }
+    }`, 
+
+    2:`
+    `,
+
+    3:``,
+
+    4:``,
+
+    5:`
+
+    `,
+
+    6:``
+
+    };
+
+    function copyText(i){
+
+    navigator.clipboard.writeText(texts[i]);
+
     }
 
-    public static void main(String[] args) {
+    </script>
 
-        BinaryTreeTraversal tree = new BinaryTreeTraversal();
+    </body>
 
-        tree.root = new Node(1);
-        tree.root.left = new Node(2);
-        tree.root.right = new Node(3);
-        tree.root.left.left = new Node(4);
-        tree.root.left.right = new Node(5);
-
-        System.out.println("Inorder Traversal:");
-        tree.inorder(tree.root);
-
-        System.out.println("\nPreorder Traversal:");
-        tree.preorder(tree.root);
-
-        System.out.println("\nPostorder Traversal:");
-        tree.postorder(tree.root);
-    }
-}`
-
-};
-
-function copyText(i){
-
-navigator.clipboard.writeText(texts[i]);
-
-}
-
-</script>
-
-</body>
-
-</html>
++    </html>
