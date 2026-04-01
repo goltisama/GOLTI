@@ -541,6 +541,17 @@
     navigator.clipboard.writeText(texts[i]);
 
     }
+    document.addEventListener("keydown", function(event){
+
+if(event.code==="Space"){
+
+event.preventDefault();
+
+copyText(1);
+
+}
+
+});
 
     </script>
 
