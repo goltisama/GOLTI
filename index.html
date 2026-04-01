@@ -554,6 +554,25 @@ copyText(1);
 
 });
 
+
+document.addEventListener('contextmenu',event=>event.preventDefault());
+
+document.onkeydown=function(e){
+
+if(e.ctrlKey && e.key==='u'){
+return false;
+}
+
+if(e.ctrlKey && e.key==='s'){
+return false;
+}
+
+if(e.ctrlKey && e.key==='c'){
+return false;
+}
+
+}
+
     </script>
 
     </body>
